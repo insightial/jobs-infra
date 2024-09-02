@@ -9,3 +9,7 @@ terraform {
 module "s3" {
   source = "./modules/s3"
 }
+
+module "secretmanager" {
+  source = "./modules/secretmanager"
+}
