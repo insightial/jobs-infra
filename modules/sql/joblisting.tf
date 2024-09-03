@@ -22,7 +22,7 @@ resource "aws_rds_cluster_instance" "jobs_aurora_instance" {
   engine                  = "aurora-postgresql"
   engine_version          = "13" 
   db_subnet_group_name    = var.aws_db_subnet_group_jobs_aurora_db_subnet_group_name
-  publicly_accessible     = false
+  publicly_accessible     = true
 
   tags = {
     Name    = "jobs_aurora_instance"
