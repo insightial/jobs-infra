@@ -18,6 +18,10 @@ module "secretmanager" {
   source = "./modules/secretmanager"
 }
 
+module "sqs" {
+  source = "./modules/sqs"
+}
+
 module "sql" {
   source = "./modules/sql"
 
@@ -33,4 +37,5 @@ module "lambda" {
 
   jobs_bucket_id = module.s3.jobs_bucket_id
   aws_iam_role_scrape_jobboard_lambda_role_arn = module.iam.aws_iam_role_scrape_jobboard_lambda_role_arn
+  aws_sqs_queue_scrape_jobboard_queue_arn = module.sqs.aws_sqs_queue_scrape_jobboard_queue_arn
 }

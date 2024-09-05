@@ -25,3 +25,9 @@ resource "aws_lambda_function" "scrape_jobboard_lambda" {
     Stage       = "Ingestion"
   }
 }
+
+resource "aws_lambda_event_source_mapping" "sqs_scrape_jobboard_lambda_trigger" {
+  event_source_arn  = var.aws_sqs_queue_scrape_jobboard_queue_arn
+  function_name     = aws_lambda_function.scrape_jobboard_lambda.arn
+  batch_size        = 1  # Control the number of messages processed per Lambda invocation
+}
