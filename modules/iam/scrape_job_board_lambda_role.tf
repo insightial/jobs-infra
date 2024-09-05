@@ -17,7 +17,7 @@ resource "aws_iam_role" "scrape_job_board_lambda_role" {
 
   tags = {
     Name    = "scrape_job_board_lambda_role"
-    Project = "AdOracle"
+    Project = "Jobs"
     Owner   = "DataEngg"
     Stage   = "Ingestion"
   }
@@ -28,18 +28,29 @@ resource "aws_iam_role_policy_attachment" "scrape_job_board_lambda_execution_rol
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
-/*
 resource "aws_iam_policy" "scrape_job_board_lambda_policy" {
   name        = "scrape_job_board_lambda_policy"
 
   policy = jsonencode({
     Version = "2012-10-17"
-    Statement = []
+    Statement = [
+      {
+        Action = [
+          "sqs:ReceiveMessage",
+          "sqs:DeleteMessage",
+          "sqs:GetQueueAttributes",
+          "sqs:ChangeMessageVisibility",
+          "sqs:GetQueueUrl"
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      }
+    ]
   })
 
   tags = {
     Name        = "scrape_job_board_lambda_policy"
-    Project     = "AdOracle"
+    Project     = "Jobs"
     Owner       = "DataEngg"
     Stage       = "Ingestion"
     Environment = "Production"
@@ -51,4 +62,3 @@ resource "aws_iam_role_policy_attachment" "scrape_job_board_lambda_policy_attach
   role       = aws_iam_role.scrape_job_board_lambda_role.name
   policy_arn = aws_iam_policy.scrape_job_board_lambda_policy.arn
 }
-*/
