@@ -49,6 +49,13 @@ resource "aws_iam_policy" "scrape_job_board_lambda_policy" {
         Action   = "secretsmanager:GetSecretValue",
         Effect   = "Allow",
         Resource = "*"
+      },
+      {
+        Action = [
+          "rds:DescribeDBInstances"
+        ]
+        Effect   = "Allow"
+        Resource = "*"
       }
     ]
   })
