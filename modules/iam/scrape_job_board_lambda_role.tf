@@ -44,6 +44,11 @@ resource "aws_iam_policy" "scrape_job_board_lambda_policy" {
         ]
         Effect   = "Allow"
         Resource = "*"
+      },
+      {
+        Action   = "secretsmanager:GetSecretValue",
+        Effect   = "Allow",
+        Resource = "*"
       }
     ]
   })
