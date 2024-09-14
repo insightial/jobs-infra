@@ -43,4 +43,5 @@ module "lambda" {
   aws_iam_role_get_jobboards_lambda_role_arn = module.iam.aws_iam_role_get_jobboards_lambda_role_arn
   aws_sqs_queue_get_jobboards_queue_arn = module.sqs.aws_sqs_queue_get_jobboards_queue_arn
   aws_sqs_queue_get_jobboards_queue_url = module.sqs.aws_sqs_queue_get_jobboards_queue_url
+  aws_iam_role_schedule_get_jobboards_lambda_role_arn = module.iam.aws_iam_role_schedule_get_jobboards_lambda_role_arn
 }

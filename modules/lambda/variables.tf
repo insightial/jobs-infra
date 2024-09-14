@@ -29,3 +29,7 @@ variable "aws_sqs_queue_get_jobboards_queue_arn" {
 variable "aws_sqs_queue_get_jobboards_queue_url" {
   type = string
 }
+
+variable "aws_iam_role_schedule_get_jobboards_lambda_role_arn" {
+  type = string
+}

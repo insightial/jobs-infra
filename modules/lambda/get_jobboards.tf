@@ -12,12 +12,10 @@ resource "aws_lambda_function" "get_jobboards_lambda" {
   runtime                        = "nodejs18.x"
   
   memory_size                    = 128
-  timeout                        = 30
+  timeout                        = 900
 
   role                           = var.aws_iam_role_get_jobboards_lambda_role_arn
   layers                         = [aws_lambda_layer_version.scrape_jobboard_lambda_layer.arn] # using the same layer as scrape lambda
-
-  reserved_concurrent_executions = 100
 
   tags = {
     Name        = "get_jobboards_lambda"
@@ -31,5 +29,5 @@ resource "aws_lambda_function" "get_jobboards_lambda" {
 resource "aws_lambda_event_source_mapping" "sqs_get_jobboards_lambda_trigger" {
   event_source_arn  = var.aws_sqs_queue_get_jobboards_queue_arn
   function_name     = aws_lambda_function.get_jobboards_lambda.arn
-  batch_size        = 1  # Control the number of messages processed per Lambda invocation
+  batch_size        = 10  # Control the number of messages processed per Lambda invocation
 }
