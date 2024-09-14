@@ -40,6 +40,18 @@ resource "aws_iam_policy" "scheule_get_job_boards_lambda_policy" {
         ]
         Effect   = "Allow"
         Resource = "*"
+      },
+      {
+        Action   = "secretsmanager:GetSecretValue",
+        Effect   = "Allow",
+        Resource = "*"
+      },
+      {
+        Action = [
+          "rds:DescribeDBInstances"
+        ]
+        Effect   = "Allow"
+        Resource = "*"
       }
     ]
   })
