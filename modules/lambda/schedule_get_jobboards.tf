@@ -15,7 +15,7 @@ resource "aws_lambda_function" "schedule_get_jobboards_lambda" {
   timeout                        = 900
 
   role                           = var.aws_iam_role_schedule_get_jobboards_lambda_role_arn
-  layers                         = [aws_lambda_layer_version.scrape_jobboard_lambda_layer.arn] # using the same layer as scrape lambda
+  layers = [data.aws_lambda_layer_version.scrape_jobboard_lambda_layer.arn] # using the same layer as scrape lambda
 
   reserved_concurrent_executions = 1
 
